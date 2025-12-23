@@ -1,0 +1,26 @@
+# Wait Time App (Temp name)
+___
+### This web application is intended to sever 2 purposes:
+### Give easy and fast updates for theme park attraction wait times and open / closed status via text notification / app-less
+### Give users a place to rate and review attractions.
+
+## Road map
+- ### Create backend env to make API calls
+- ### Create basic frontend to display wait times
+- ### Add to backend logic to support users
+- ### Add frontend support for User profiles
+  - ### Allow the user to create an account
+      - ### Login / Logout
+      - ### Notification system so users can request to track attractions of interest
+      - ### Attraction reviews / user stats
+        - #### stats - number of times ridden 
+        - #### rate - quality of experience
+___
+## Tech stack
+## V1
+- ### Backend JavaScript / Node.js
+- ### Frontend HTML - CSS - Javascript
+- ### Database MongoDB
+- ### Self-hosted / Localhost
+
+
