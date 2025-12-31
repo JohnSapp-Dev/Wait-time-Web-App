@@ -2,19 +2,22 @@ import dotenv from "dotenv";
 import connectDB from "./config/database.js";
 import app from "./app.js";
 import { WaitTime } from '../../DB_Models/Wait-Time-model.js'
-import { DisneyWorldParksURL } from "./config/constants.js";
+import {DisneyWorldParksURL, ParksURLArray} from "./config/constants.js";
 
 dotenv.config({
     path: './.env'
 });
 
 const syncAllParks = async () => {
+
     console.log(`\n--- Starting API Sync: ${new Date().toLocaleString()} ---`);
-    for (const url of DisneyWorldParksURL) {
+
+    for (const url of ParksURLArray) {
         console.log(`\n--- Syncing URL: ${url} ---`);
         try {
             // We await here so we don't spam the DB/Network all at once
             await fillDBWithAPIData(url);
+
         } catch (error) {
             console.error(`Error syncing ${url}:`, error.message);
         }
@@ -45,7 +48,7 @@ const startServer = async () => {
     }
 }
 
-// automate calls to queue-times.com API to gather wait time data
+// Automate calls to queue-times.com API to gather wait time data
 async function fillDBWithAPIData(URL){
 
     const response = await fetch(URL); // calls external API
@@ -54,15 +57,13 @@ async function fillDBWithAPIData(URL){
         const error = await response.text();
         console.error(`Request failed with status code ${response.status}: ${error}`);
         // return res.status(response.status).json({ message: "Request failed form theme park api" });
-
     }
 
     const data = await response.json();
-    // return res.json(data);
-    // console.log(data);
 
+    // Loops though API JSON data creates new database if new ride is detected,
+    // updates existing document with new data as data is collected.
     for (const land of data.lands){
-
         for(const ride of land.rides){
 
             const newDataEntry = {
@@ -79,7 +80,6 @@ async function fillDBWithAPIData(URL){
                         $setOnInsert: {
                             id: ride.id,
                             name: ride.name,
-
                         },
                         $push: {data: newDataEntry}
                     },
@@ -90,11 +90,8 @@ async function fillDBWithAPIData(URL){
                     }
                 );
 
-                const id = String(ride.id).padEnd(5, ' ');
-
+                const id = String(ride.id).padEnd(5, ' '); // Formates string for consistent spacing
                 console.log(`Successfully updated/created document: ID: ${id} Name: ${ride.name}`);
-
-                // console.log(`Successfully updated/created document: id:${ride.id}, name:${ride.name}`);
 
             }catch(error){
                 console.error(`Database error on ride id: ${ ride.id }: ${error}`);
