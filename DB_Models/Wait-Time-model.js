@@ -15,6 +15,17 @@ const attractionWaitTimeSchema = new Schema({
         lowercase: true,
         trim: true,
     },
+    park:{
+        type: String,
+        required: true,
+        lowercase: true,
+        trim: true,
+    },
+    land:{
+        type: String,
+        lowercase: true,
+        trim: true,
+    },
     data: [
         {
             isOpen :{

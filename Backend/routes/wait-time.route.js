@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import { getWaitTime } from "../controllers/wait-time.controller.js";
+import {getLandData, getParkData, getSingleRideData} from "../controllers/wait-time.controller.js";
 
 const router = Router();
 
-router.route("/GetData").post(getWaitTime);
+router.route("/GetData").post(getSingleRideData);
+router.route("/GetLandData").get(getLandData);
+router.route("/GetParkData").get(getParkData);
 
 export default router;

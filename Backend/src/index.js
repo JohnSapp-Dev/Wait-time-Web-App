@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import connectDB from "./config/database.js";
 import app from "./app.js";
 import { WaitTime } from '../../DB_Models/Wait-Time-model.js'
-import {DisneyWorldParksURL, ParksURLArray} from "./config/constants.js";
+import { ParkURLMap } from "./config/constants.js";
 
 dotenv.config({
     path: './.env'
@@ -12,11 +12,11 @@ const syncAllParks = async () => {
 
     console.log(`\n--- Starting API Sync: ${new Date().toLocaleString()} ---`);
 
-    for (const url of ParksURLArray) {
-        console.log(`\n--- Syncing URL: ${url} ---`);
+    for (const [parkName,url] of ParkURLMap) {
+        console.log(`\n--- Fetching API data for: ${ parkName } URL: ${url} ---`);
         try {
             // We await here so we don't spam the DB/Network all at once
-            await fillDBWithAPIData(url);
+            await fillDBWithAPIData(parkName,url);
 
         } catch (error) {
             console.error(`Error syncing ${url}:`, error.message);
@@ -40,8 +40,8 @@ const startServer = async () => {
         });
 
 
-        await syncAllParks(); // makes initial call to API on sever start
-        setInterval(syncAllParks, 300000); //Makes a call once every 5 minutes
+        // await syncAllParks(); // makes initial call to API on sever start
+        // setInterval(syncAllParks, 300000); //Makes a call once every 5 minutes
 
     } catch (error) {
         console.log("MongoDB connection error: " + error, error);
@@ -49,7 +49,7 @@ const startServer = async () => {
 }
 
 // Automate calls to queue-times.com API to gather wait time data
-async function fillDBWithAPIData(URL){
+async function fillDBWithAPIData(parkName,URL){
 
     const response = await fetch(URL); // calls external API
 
@@ -80,6 +80,8 @@ async function fillDBWithAPIData(URL){
                         $setOnInsert: {
                             id: ride.id,
                             name: ride.name,
+                            park: parkName,
+                            land: land.name
                         },
                         $push: {data: newDataEntry}
                     },
