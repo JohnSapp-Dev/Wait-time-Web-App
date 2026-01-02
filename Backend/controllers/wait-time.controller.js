@@ -87,7 +87,10 @@ const getParkData = async (req, res) => {
 
     try{
 
-        const { parkName } = req.body; // Get the ride ID from the request
+        // const { parkName } = req.body; // Get the Park name from the request body
+        const { parkName } = req.query; // Get the Park name from the request body
+
+        console.log(parkName);
 
         if (!parkName){
             return res.status(404).json({ message: "Please enter a Park Name" });

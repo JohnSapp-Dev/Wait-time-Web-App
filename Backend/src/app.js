@@ -1,8 +1,13 @@
 import express from "express"
 
+import cors from "cors";
 const app = express();
 
 app.use(express.json());
+
+const allowedOrigins = ['http://localhost:63342']
+
+app.use(cors({origin: allowedOrigins}));
 
 //routes import
 import waitTimeRoute from "../routes/wait-time.route.js";

@@ -4,6 +4,9 @@ import {getLandData, getParkData, getSingleRideData} from "../controllers/wait-t
 const router = Router();
 
 router.route("/GetData").post(getSingleRideData);
+// router.route("/GetLandData").get(getLandData);
+// router.route("/GetParkData").get(getParkData);
+
 router.route("/GetLandData").get(getLandData);
 router.route("/GetParkData").get(getParkData);
 
