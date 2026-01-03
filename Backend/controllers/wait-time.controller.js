@@ -87,8 +87,7 @@ const getParkData = async (req, res) => {
 
     try{
 
-        // const { parkName } = req.body; // Get the Park name from the request body
-        const { parkName } = req.query; // Get the Park name from the request body
+        const { parkName } = req.query; // Get the Park name from the request URL
 
         console.log(parkName);
 
@@ -127,8 +126,31 @@ const getParkData = async (req, res) => {
     }
 }
 
+const getAllParkData = async (req, res) => {
+
+    try{
+        const getAllParkData = await WaitTime.distinct("park")
+
+        if (!getAllParkData){
+            return res.status(404).json({ message: `No Park Data Found` });
+        }
+
+        res.status(200).json({
+            message: "Park Data Found",
+            ParkNames: getAllParkData
+        });
+
+        console.log(getAllParkData);
+
+    } catch (error) {
+        res.status(500).json({ message: `Internal server error: ${error}`, error: error });
+    }
+}
+
+
 export{
     getSingleRideData,
     getLandData,
-    getParkData
+    getParkData,
+    getAllParkData
 }
