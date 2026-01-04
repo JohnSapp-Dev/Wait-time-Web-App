@@ -3,7 +3,7 @@ import {getAllParkData, getLandData, getParkData, getSingleRideData} from "../co
 
 const router = Router();
 
-router.route("/GetData").get(getSingleRideData);
+router.route("/GetData/:id").get(getSingleRideData);
 // router.route("/GetLandData").get(getLandData);
 // router.route("/GetParkData").get(getParkData);
 

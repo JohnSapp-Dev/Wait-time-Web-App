@@ -6,8 +6,8 @@ const getSingleRideData = async (req, res) => {
 
     try{
 
-        const { id } = req.body; // Get the ride ID from the request
-        console.log(`id number: ${id}`);
+        const id = req.params.id; // Get the ride ID from the params
+        // console.log(`id number: ${id}`); //debugging code
 
         if (!id){
             return res.status(404).json({ message: "Please enter an ID number" });
@@ -89,7 +89,7 @@ const getParkData = async (req, res) => {
 
         const { parkName } = req.query; // Get the Park name from the request URL
 
-        console.log(`GetParkData controller ${parkName}`);
+        // console.log(`GetParkData controller ${parkName}`); //debugging code
 
         if (!parkName){
             return res.status(404).json({ message: "Please enter a Park Name" });

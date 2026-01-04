@@ -1,14 +1,13 @@
-
-let currentPark = 'default'
-
 const dropDownParks = document.getElementById("ParkDropDown");
 
 const dropDownAttractions = document.getElementById("AttractionDropDown");
 
+const waitTimeDIV = document.getElementById("WaitTimeDIV");
+
 document.addEventListener("DOMContentLoaded", initialParks); // Loads park names from database on page load
 
 // Sets the "Select an Attraction" dropdown menu based on the selected park
-dropDownParks.addEventListener("click", function() {
+dropDownParks.addEventListener("change", function() {
     console.log("DropDown parks clicked");
 
     const selectedPark = dropDownParks.querySelector("option");
@@ -16,26 +15,42 @@ dropDownParks.addEventListener("click", function() {
 
     console.log(`park selected ${selectedPark.value}`);
 
-    if (selectedPark.value !== currentPark) { // only allows new API call if a new option is selected
-        if (selectedPark.value) { // check if value is not null
-            console.log(`click listener ${selectedPark.value}`); // debugging code
-            getDataByPark(selectedPark.value).then(jsonResponse => {
+    if (selectedPark.value) { // check if value is not null
 
-                // create HTML selection string
-                const htmlString = jsonResponse.LandInformation.Attractions
-                    .map(attraction => `<option value="${attraction.name}">${attraction.name}</option>`)
-                    .join('');
+        console.log(`click listener ${selectedPark.value}`); // debugging code
+        getDataByPark(selectedPark.value).then(jsonResponse => {
 
-                dropDownAttractions.innerHTML = htmlString; // update page html with dynamic attraction options
-            });
+            // create HTML selection string
+            const htmlString = jsonResponse.LandInformation.Attractions
+                // .map(attraction => `<option value="${attraction.name}">${attraction.name}</option>`)
+                .map(attraction => `<option id="${attraction.id}" value="${attraction.name}">${attraction.name}</option>`)
+                .join('');
 
-            currentPark = selectedPark.value; // Updates with the current park selection
-        }
+            dropDownAttractions.innerHTML = htmlString; // update page html with dynamic attraction options
+        });
 
-    } else {
-        console.log(`Else case current park ${selectedPark.value}`);
     }
+});
 
+// displays single attraction data
+dropDownAttractions.addEventListener("change", function() {
+    // const selectedAttraction = dropDownAttractions.querySelector("#dropDownAttractions option");
+    const selectedAttraction = this.options[this.selectedIndex];
+
+    let selectedAttraction_Value = selectedAttraction.value;
+    let selectedAttraction_id = selectedAttraction.id;
+
+    console.log(`selectedAttraction value ${selectedAttraction_Value}`);
+    console.log(`selectedAttraction id ${selectedAttraction_id}`);
+
+    getAttractionData(selectedAttraction_id).then(jsonResponse => {
+
+        const htmlString = jsonResponse.RideInformation.WaitTimeData
+            .map(attraction => `<div> Open: ${attraction.isOpen} Wait Time: ${attraction.waitTime} Updated ${attraction.updated}</div>`)
+            .join('');
+
+        waitTimeDIV.innerHTML = htmlString; // update page html with dynamic attraction options
+    });
 });
 
 async function getDataByPark(parkOption) {
@@ -68,6 +83,20 @@ async function getAllUniqueParks() {
     }
 }
 
+async function getAttractionData(attractionID){
+    const URL = `http://localhost:4000/api/v1/waitTime/GetData/${attractionID}`;
+
+    const response = await fetch(URL, {
+        method: 'GET'
+    });
+
+    if (!response.ok) {
+        console.log(`Error: ${response.status}`);
+    } else{
+        return await response.json();
+    }
+}
+
 async function initialParks(){
     console.log("Initializing parks...");
 
@@ -85,9 +114,3 @@ async function initialParks(){
         }
     });
 }
-
-
-
-
-
-
