@@ -1,45 +1,41 @@
-// const div = document.querySelector('div');
 
-
-const submitButton = document.getElementById("ParkSelection");
+let currentPark = 'default'
 
 const dropDownParks = document.getElementById("ParkDropDown");
 
-submitButton.addEventListener("click", function() {
-    const parkOption = document.querySelector('input[name="Park"]:checked');
-    if (parkOption) {
-        console.log(parkOption.value);
-        getDataByPark(parkOption.value).then(jsonResponse => {
+const dropDownAttractions = document.getElementById("AttractionDropDown");
 
-            const htmlString = jsonResponse.LandInformation.Attractions
-                .map(attraction => `<div>${attraction.name} (ID: ${attraction.id})</div>`)
-                .join('');
+document.addEventListener("DOMContentLoaded", initialParks); // Loads park names from database on page load
 
-            div.innerHTML = htmlString;
-        });
+// Sets the "Select an Attraction" dropdown menu based on the selected park
+dropDownParks.addEventListener("click", function() {
+    console.log("DropDown parks clicked");
 
-    } else {
-        console.log("Park selection is empty");
-    }
+    const selectedPark = dropDownParks.querySelector("option");
+    selectedPark.value = dropDownParks.value; // Gets the park selected via the dropdown
 
-});
+    console.log(`park selected ${selectedPark.value}`);
 
-dropDownParks.addEventListener("focus", function() {
-    console.log("DropDown parks focus");
+    if (selectedPark.value !== currentPark) { // only allows new API call if a new option is selected
+        if (selectedPark.value) { // check if value is not null
+            console.log(`click listener ${selectedPark.value}`); // debugging code
+            getDataByPark(selectedPark.value).then(jsonResponse => {
 
-    let optionString = '';
+                // create HTML selection string
+                const htmlString = jsonResponse.LandInformation.Attractions
+                    .map(attraction => `<option value="${attraction.name}">${attraction.name}</option>`)
+                    .join('');
 
-    getAllUniqueParks().then(jsonResponse => {
-        const optionData = jsonResponse.ParkNames;
-
-        if (optionData && Array.isArray(optionData)) {
-            optionData.forEach(name => {
-                optionString += `<option value="${name}">${name}</option>`;
+                dropDownAttractions.innerHTML = htmlString; // update page html with dynamic attraction options
             });
 
-            dropDownParks.innerHTML = optionString;
+            currentPark = selectedPark.value; // Updates with the current park selection
         }
-    });
+
+    } else {
+        console.log(`Else case current park ${selectedPark.value}`);
+    }
+
 });
 
 async function getDataByPark(parkOption) {
@@ -54,9 +50,7 @@ async function getDataByPark(parkOption) {
         console.log(`Error: ${response.status}`);
     } else{
         return await response.json();
-
     }
-
 }
 
 async function getAllUniqueParks() {
@@ -72,6 +66,24 @@ async function getAllUniqueParks() {
         return await response.json();
 
     }
+}
+
+async function initialParks(){
+    console.log("Initializing parks...");
+
+    getAllUniqueParks().then(jsonResponse => {
+        const optionData = jsonResponse.ParkNames;
+
+        let optionString = '<option value="default">Select an option</option>';
+
+        if (optionData && Array.isArray(optionData)) {
+            optionData.forEach(name => {
+                optionString += `<option value="${name}">${name}</option>`;
+            });
+
+            dropDownParks.innerHTML = optionString;
+        }
+    });
 }
 
 

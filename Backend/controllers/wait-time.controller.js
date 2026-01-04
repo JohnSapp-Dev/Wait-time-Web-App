@@ -89,7 +89,7 @@ const getParkData = async (req, res) => {
 
         const { parkName } = req.query; // Get the Park name from the request URL
 
-        console.log(parkName);
+        console.log(`GetParkData controller ${parkName}`);
 
         if (!parkName){
             return res.status(404).json({ message: "Please enter a Park Name" });
