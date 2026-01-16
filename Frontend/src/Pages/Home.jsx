@@ -1,23 +1,53 @@
+import "../css/Home.css"
+import ParkCard from '../Components/ParkCars.jsx'
+
 function Home() {
 
     const searchPark = async (event) => {
         alert("Hello World!");
     }
+    const parkCars = [
+        {
+            id:1,
+            name: "Magic Kingdom",
+            location: "Orlando,Fl",
+            // url: "../assets/MK-white-text.png",
+            url: '/MK-white-text.png',
+        },{
+            id:2,
+            name: "EPCOT",
+            location: "Orlando,Fl",
+            url: "/EPCOT-white-text.png",
+        },{
+            id:3,
+            name: "Hollywood Studios",
+            location: "Orlando,Fl",
+            url: "/HollywoodStudios-white-text.png",
+        },{
+            id:4,
+            name: "Animal Kingdom",
+            location: "Orlando,Fl",
+            url: "/AnimalKingdom-white-text.png",
+        }
+    ]
 
     return (
     <div className="Home">
-        {/*<form onSubmit={searchPark} className="search-form">*/}
-        {/*    <label>Select A Park</label>*/}
-        {/*    <select name="park" id="park">*/}
-        {/*        <option value="default">Park...</option>*/}
-        {/*    </select>*/}
-        {/*</form>*/}
-        {/*<h2>Hello World</h2>*/}
+
+        <h1>Welcome to The Wait Time App</h1>
+        <p>This Website is intended to give quick up-to-the-minute updates on Attraction wait times
+        and Open status. This site will allow users to set notifications via text message when
+            selected attractions open or close, allowing you to know exactly when your favorite
+        ride reopens after a down time!</p>
+        <p>Select a park below to see it's Attraction wait times and open status.</p>
 
         <div className="Park-grid">
-            {parks.map((park) => (
+            {parkCars.map(
+                (park) =>
+                    (
                 <ParkCard park={park} key={park.id} />
-            ))}
+                 )
+            )}
 
         </div>
     </div>

@@ -2,6 +2,7 @@
     --SearchFontColor: #737373;
     --ActiveFontColor: #D304ABF;
     --Formbackgroundcolor: #eaeaea;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 body {
@@ -10,7 +11,6 @@ body {
 }
 
 .NavBar {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: var(--backgroundcolor);
     padding: 1rem 2rem;
     display: flex;
