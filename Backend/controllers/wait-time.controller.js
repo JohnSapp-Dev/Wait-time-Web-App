@@ -101,8 +101,9 @@ const getParkData = async (req, res) => {
                     park: parkName, // Filters by land name
                 },
                 {
-                    name: 1 , id: 1, _id: 0 // returns only the name of the attractions in the selected Park
+                     name: 1 , id: 1, _id: 0, data: { $slice:-1} // returns the Name, Id, and latest wait time doc for each attraction
                 });
+
 
             if (!getParkData){
                 return res.status(404).json({ message: `Land: "${parkName}" not in database` });
@@ -113,7 +114,8 @@ const getParkData = async (req, res) => {
                 LandInformation: {
                     name: parkName,
                     numberOfAttractions: getParkData.length,
-                    Attractions: getParkData
+                    Attractions: getParkData,
+
                 }
             });
 

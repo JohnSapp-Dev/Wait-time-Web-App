@@ -1,12 +1,12 @@
-import "../css/Home.css"
-import ParkCard from '../Components/ParkCars.jsx'
+import "../css/CardGrid.css"
+import ParkCards from '../Components/ParkCards.jsx'
 
 function Home() {
 
     const searchPark = async (event) => {
         alert("Hello World!");
     }
-    const parkCars = [
+    const parkCards = [
         {
             id:1,
             name: "Magic Kingdom",
@@ -41,11 +41,12 @@ function Home() {
         ride reopens after a down time!</p>
         <p>Select a park below to see it's Attraction wait times and open status.</p>
 
-        <div className="Park-grid">
-            {parkCars.map(
+        <div className="grid">
+
+            {parkCards.map(
                 (park) =>
                     (
-                <ParkCard park={park} key={park.id} />
+                <ParkCards park={park} key={park.id} />
                  )
             )}
 

@@ -1,4 +1,4 @@
-.ParkCard {
+.Card {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     position: relative;
     border-radius: 8px;
@@ -9,12 +9,12 @@
     flex-direction: column;
 }
 
-.ParkCard:hover {
+.Card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px 0 rgba(124, 167, 237, 0.4), 0 6px 20px 0 rgba(207, 207, 207, 0.92);
 }
 
-.Park-poster {
+.poster {
     position: relative;
     text-align: center;
     aspect-ratio: 3/2;
@@ -27,13 +27,13 @@
     border-bottom: 2px solid var(--SearchFontColor);
 }
 
-.Park-poster img {
+.poster img {
     width: 95%;
     height: 95%;
     object-fit: contain;
 }
 
-.Park-info {
+.info {
     padding: 1rem;
     flex: 1;
     display: flex;
@@ -47,14 +47,15 @@
     );
 }
 
-.Park-info h3 {
+.info h3 {
     font-size: 1rem;
     margin: 0;
 }
 
-.Park-link{
+.link{
     all: unset;
 }
-p{
+.info p{
     padding-left: 0;
+    margin: 0;
 }
