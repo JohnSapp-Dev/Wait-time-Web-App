@@ -32,7 +32,7 @@
 //     }
 // });
 //
-// // displays single attraction data
+// displays single attraction data
 // dropDownAttractions.addEventListener("change", function() {
 //     // const selectedAttraction = dropDownAttractions.querySelector("#dropDownAttractions option");
 //     const selectedAttraction = this.options[this.selectedIndex];
@@ -101,19 +101,21 @@ export const getDataByPark = async (parkOption) => {
 //     }
 // }
 //
-// async function getAttractionData(attractionID){
-//     const URL = `http://localhost:4000/api/v1/waitTime/GetData/${attractionID}`;
-//
-//     const response = await fetch(URL, {
-//         method: 'GET'
-//     });
-//
-//     if (!response.ok) {
-//         console.log(`Error: ${response.status}`);
-//     } else{
-//         return await response.json();
-//     }
-// }
+export const getAttractionData = async (attractionID) => {
+    const URL = `http://localhost:4000/api/v1/waitTime/GetData/${attractionID}`;
+
+    const response = await fetch(URL, {
+        method: 'GET'
+    });
+
+    if (!response.ok) {
+        console.log(`Error: ${response.status}`);
+    } else{
+        const data = await response.json();
+        console.log("Park Data",  data);
+        return data
+    }
+}
 //
 // async function initialParks(){
 //     console.log("Initializing parks...");

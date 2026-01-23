@@ -6,7 +6,7 @@ function AttractionCards({Attraction}) {
     const isOpen = Attraction.data[0]?.isOpen;
 
     return (
-        // <Link className="link" to={`Park/${Attraction.name}`}>
+        // <Link className="link" to={`AttractionSelectionPage/${Attraction.name}`}>
         //     <div className="Card">
         //         <div className="poster">
         //             {/*<img src={Attraction.url} alt={Attraction.name}  />*/}
@@ -22,7 +22,7 @@ function AttractionCards({Attraction}) {
         //     </div>
         // </Link>
 
-        <Link className="link" to={`Park/${Attraction.name}`}>
+        <Link className="link" to={`/AttractionInfo/${Attraction.id}`}>
             <div className="Card">
                 <div className="name">
                     {/*<img src={Attraction.url} alt={Attraction.name}  />*/}

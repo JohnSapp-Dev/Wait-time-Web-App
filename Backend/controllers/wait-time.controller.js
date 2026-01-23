@@ -87,12 +87,12 @@ const getParkData = async (req, res) => {
 
     try{
 
-        const { parkName } = req.query; // Get the Park name from the request URL
+        const { parkName } = req.query; // Get the AttractionSelectionPage name from the request URL
 
         // console.log(`GetParkData controller ${parkName}`); //debugging code
 
         if (!parkName){
-            return res.status(404).json({ message: "Please enter a Park Name" });
+            return res.status(404).json({ message: "Please enter a AttractionSelectionPage Name" });
         }
 
         try{
@@ -110,7 +110,7 @@ const getParkData = async (req, res) => {
             }
 
             res.status(200).json({
-                message: "Park Data Found",
+                message: "AttractionSelectionPage Data Found",
                 LandInformation: {
                     name: parkName,
                     numberOfAttractions: getParkData.length,
@@ -138,7 +138,7 @@ const getAllParkData = async (req, res) => {
         }
 
         res.status(200).json({
-            message: "Park Data Found",
+            message: "AttractionSelectionPage Data Found",
             ParkNames: getAllParkData
         });
 

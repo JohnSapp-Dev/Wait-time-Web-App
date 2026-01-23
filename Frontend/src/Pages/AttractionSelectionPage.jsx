@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import { getDataByPark } from "../Services/getParkData.js";
 import "../css/CardGrid.css"
 
-function Park() {
+function AttractionSelectionPage() {
 
     let { name } = useParams();
     console.log(`park name ${name}`);
@@ -36,6 +36,9 @@ function Park() {
             <h1>Welcome to {name}</h1>
             <p>This is a theme park</p>
 
+            {loading && <div>Loading Attractions...</div>}
+            {error && <div>Error loading page {error}</div>}
+
             <div className="grid">
 
                 {attractions.map(
@@ -51,4 +54,4 @@ function Park() {
     )
 }
 
-export default Park
+export default AttractionSelectionPage

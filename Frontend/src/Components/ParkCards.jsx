@@ -4,7 +4,7 @@ import {Link} from "react-router";
 function ParkCards({park}) {
 
     return (
-        <Link className="link" to={`Park/${park.name}`}>
+        <Link className="link" to={`AttractionSelectionPage/${park.name}`}>
             <div className="ParkCard">
                 <div className="Park-poster">
 

@@ -1,0 +1,10 @@
+h3 {
+    text-align: center;
+    justify-items: center;
+    text-transform: capitalize;
+}
+p {
+    padding-left: 1rem;
+    text-align: left;
+    justify-items: center;
+}
