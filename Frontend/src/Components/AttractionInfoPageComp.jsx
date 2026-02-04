@@ -1,6 +1,6 @@
 import "../css/AttractionInfoCard.css"
 
-function AttractionInfoCard({Attraction}) {
+function AttractionInfoPageComp({Attraction}) {
 
     const maxWaitTime = Math.max(...Attraction.RideInformation.WaitTimeData.map(i => i.waitTime));
     const minWaitTime = Math.min(...Attraction.RideInformation.WaitTimeData.map(i => i.waitTime));
@@ -9,7 +9,7 @@ function AttractionInfoCard({Attraction}) {
     let differance = 0
 
     if (currentWaitTime < maxWaitTime) {
-        differance = maxWaitTime - minWaitTime;
+        differance = maxWaitTime - currentWaitTime;
     }
 
 
@@ -26,10 +26,10 @@ function AttractionInfoCard({Attraction}) {
                     :
                     <p>{differance} minutes lower than max</p>}
 
-            <p>Rating</p>
+            <p>Rating: ⭐⭐⭐⭐⭐</p>
 
         </div>
     )
 }
 
-export default AttractionInfoCard
+export default AttractionInfoPageComp

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import "../css/Navbar.css"
 
-function Navbar() {
+function NavBarComp() {
 
     const[searchQuery,setSearchQuery] = useState("")
 
@@ -36,4 +36,4 @@ function Navbar() {
     )
 }
 
-export default Navbar;
+export default NavBarComp;

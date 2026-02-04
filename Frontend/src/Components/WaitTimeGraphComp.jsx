@@ -2,13 +2,13 @@ import Chart from 'chart.js/auto'
 import { Line } from "react-chartjs-2"
 import "../css/WaitTimeGraph.css"
 
-function WaitTimeGraph({waitTimeData})  {
+function WaitTimeGraphComp({waitTimeData})  {
 
     const YaxisMax = Math.max(...waitTimeData.RideInformation.WaitTimeData.map(i => i.waitTime));
     const YaxisCeiling = YaxisMax + 20;
 
     return (
-        <div className="Graph" style={{ height: '300px', width: '100%' }}>
+        <div className="Graph">
 
             {!waitTimeData?.RideInformation?.WaitTimeData ? (
                 <div style={{ height: '300px' }}>Loading chart data...</div>
@@ -54,7 +54,7 @@ function WaitTimeGraph({waitTimeData})  {
                 />
             )}
         </div>
-    )
+    );
 }
 
-export default WaitTimeGraph;
+export default WaitTimeGraphComp;

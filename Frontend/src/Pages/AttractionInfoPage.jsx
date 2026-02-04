@@ -1,6 +1,6 @@
-import WaitTimeGraph from '../Components/WaitTimeGraph.jsx';
-import WaitTimeCard from "../Components/WaitTimeCard.jsx";
-import AttractionInfoCard from "../Components/AttractionInfoCard.jsx";
+import WaitTimeGraphComp from '../Components/WaitTimeGraphComp.jsx';
+import WaitTimeCardComp from "../Components/WaitTimeCardComp.jsx";
+import AttractionInfoPageComp from "../Components/AttractionInfoPageComp.jsx";
 import {Line} from "react-chartjs-2";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router";
@@ -37,24 +37,22 @@ function AttractionInfoPage() {
     console.log(` not in useEffect -- Is Open: ${isOpen}`);
     return (
         <>
-        <div>Attraction Info! </div>
 
-            {loading && <div>Loading Wait times...</div>}
-            {error && <div>Error loading page {error}</div>}
-
+        {loading && <div>Loading Wait times...</div>}
+        {error && <div>Error loading page {error}</div>}
 
         {!loading && !error && attraction && (
             <div className='AttractionInfoContainer'>
                 { (isOpen) ? (
                     <div className='AttractionInfoWaitTime open'>
-                        <WaitTimeCard
+                        <WaitTimeCardComp
                             Attraction={attraction}
                             key={attraction.RideInformation?.name}
                         />
                     </div>
                 ):(
                     <div className='AttractionInfoWaitTime closed'>
-                        <WaitTimeCard
+                        <WaitTimeCardComp
                             Attraction={attraction}
                             key={attraction.RideInformation?.name}
                         />
@@ -62,13 +60,13 @@ function AttractionInfoPage() {
                 )}
 
                 <div className='AttractionInfo'>
-                    <AttractionInfoCard
+                    <AttractionInfoPageComp
                         Attraction={attraction}
                         key={attraction.RideInformation?.id + 100}
                     />
                 </div>
                 <div className='AttractionInfoGraph'>
-                    <WaitTimeGraph
+                    <WaitTimeGraphComp
                         waitTimeData={attraction}
                         key={attraction.RideInformation?.id}
                     />

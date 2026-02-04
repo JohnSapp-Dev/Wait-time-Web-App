@@ -1,7 +1,7 @@
 import "../css/CardGrid.css"
-import ParkCards from '../Components/ParkCards.jsx'
+import ParkCardsComp from '../Components/ParkCardsComp.jsx'
 
-function Home() {
+function HomePage() {
 
     const searchPark = async (event) => {
         alert("Hello World!");
@@ -46,7 +46,7 @@ function Home() {
             {parkCards.map(
                 (park) =>
                     (
-                <ParkCards park={park} key={park.id} />
+                <ParkCardsComp park={park} key={park.id} />
                  )
             )}
 
@@ -55,4 +55,4 @@ function Home() {
     )
 }
 
-export default Home;
+export default HomePage;

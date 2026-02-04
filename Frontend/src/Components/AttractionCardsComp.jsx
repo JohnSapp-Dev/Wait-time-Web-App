@@ -1,26 +1,11 @@
 import "../css/AttractionCards.css"
 import {Link} from "react-router";
 
-function AttractionCards({Attraction}) {
+function AttractionCardsComp({Attraction}) {
 
     const isOpen = Attraction.data[0]?.isOpen;
 
     return (
-        // <Link className="link" to={`AttractionSelectionPage/${Attraction.name}`}>
-        //     <div className="Card">
-        //         <div className="poster">
-        //             {/*<img src={Attraction.url} alt={Attraction.name}  />*/}
-        //             <h1 className="capitalize">{Attraction.name}</h1>
-        //         </div>
-        //         <div className="info">
-        //             {/*<h3>{Attraction.name}</h3>*/}
-        //
-        //             {isOpen ? (<p>Status: Open</p>) : (<p>Status: Closed</p>)}
-        //
-        //             <p>Wait time: {Attraction.data[0].waitTime}</p>
-        //         </div>
-        //     </div>
-        // </Link>
 
         <Link className="link" to={`/AttractionInfo/${Attraction.id}`}>
             <div className="Card">
@@ -47,4 +32,4 @@ function AttractionCards({Attraction}) {
     )
 }
 
-export default AttractionCards
+export default AttractionCardsComp

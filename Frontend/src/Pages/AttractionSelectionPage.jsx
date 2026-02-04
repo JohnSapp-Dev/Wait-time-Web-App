@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import AttractionCards from "../Components/AttractionCards.jsx";
+import AttractionCardsComp from "../Components/AttractionCardsComp.jsx";
 import {useEffect, useState} from "react";
 import { getDataByPark } from "../Services/getParkData.js";
 import "../css/CardGrid.css"
@@ -44,7 +44,7 @@ function AttractionSelectionPage() {
                 {attractions.map(
                     (Attraction) =>
                         (
-                            <AttractionCards Attraction={Attraction} key={Attraction.id} />
+                            <AttractionCardsComp Attraction={Attraction} key={Attraction.id} />
                         )
                 )}
 

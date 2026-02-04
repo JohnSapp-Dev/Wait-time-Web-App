@@ -4,18 +4,20 @@
     grid-template-rows: repeat(2, 1fr);
     column-gap: 15px;
     row-gap: 15px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .AttractionInfoWaitTime {
     grid-row: 1;
     grid-column: 1;
     /*padding: 2rem;*/
-
     border-radius: 2rem;
-    aspect-ratio: 1/1;
+
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: 300px;
 }
 .open{
     background: radial-gradient(
@@ -41,6 +43,7 @@
     width: 100%;
     height: 100%;
     border-radius: 2rem;
+    min-width: 300px;
 
 }
 .AttractionInfoGraph {
@@ -49,4 +52,5 @@
     border : 1px solid rgb(182, 182, 182);
     border-radius: 2rem;
     background-color: #191919;
+    padding: 15px;
 }

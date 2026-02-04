@@ -1,7 +1,7 @@
 import "../css/ParkCard.css"
 import {Link} from "react-router";
 
-function ParkCards({park}) {
+function ParkCardsComp({park}) {
 
     return (
         <Link className="link" to={`AttractionSelectionPage/${park.name}`}>
@@ -9,11 +9,6 @@ function ParkCards({park}) {
                 <div className="Park-poster">
 
                     <img src={park.url} alt={park.name}  />
-
-
-                    {/*<div className="park-overlay">*/}
-                    {/*    <button className={`favorite-btn ${favorite ? "active" : ""}`} onClick={onFavoriteClick}>🤍</button>*/}
-                    {/*</div>*/}
 
                 </div>
                 <div className="Park-info">
@@ -26,4 +21,4 @@ function ParkCards({park}) {
     )
 }
 
-export default ParkCards
+export default ParkCardsComp
