@@ -34,7 +34,8 @@ function AttractionInfoPage() {
         }
         loadWaitTimeData();
     },[])
-    console.log(` not in useEffect -- Is Open: ${isOpen}`);
+
+
     return (
         <>
 
