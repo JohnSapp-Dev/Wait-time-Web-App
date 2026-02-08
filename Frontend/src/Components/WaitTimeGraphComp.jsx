@@ -41,9 +41,7 @@ function WaitTimeGraphComp({waitTimeData})  {
         // const dataDate = new Date(data.updated).toISOString().split("T")[0];
         const dataDate = new Date(data.updated).toLocaleDateString('en-CA',{
             timeZone:'America/New_York'
-
-        })
-
+        });
 
        console.log(dataDate);
 
@@ -61,7 +59,8 @@ function WaitTimeGraphComp({waitTimeData})  {
                     data={{
 
                         labels: filteredData.map((item) =>
-                            new Date(item.updated).toLocaleTimeString(['en-US'], {timeZone:'America/New_York', hour: '2-digit', minute: '2-digit' })
+                            new Date(item.updated).toLocaleTimeString(['en-US'], {
+                                timeZone:'America/New_York', hour: '2-digit', minute: '2-digit' })
                         ),
                         datasets: [
                             {
@@ -78,7 +77,7 @@ function WaitTimeGraphComp({waitTimeData})  {
                         scales: {
                             y: {
                                 beginAtZero: true, // Ensures the chart doesn't "float"
-                                suggestedMax: YaxisCeiling,
+                                suggestedMax: Math.max(...filteredData.map(i => i.waitTime)) + 20,
                                 ticks: {
                                     stepSize: 5,
                                 }
@@ -102,9 +101,10 @@ function WaitTimeGraphComp({waitTimeData})  {
         </div>
 
         <div className="filterDate">
+            <div>Start</div>
             <input onChange={handleStartDate} type="date" id="startDate" value={startDate}/>
+            <div>End</div>
             <input onChange={handleEndDate} type="date" id="endDate" value={endDate}/>
-
         </div>
         </>
     )
