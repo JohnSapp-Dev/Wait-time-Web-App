@@ -1,13 +1,13 @@
-import Chart from 'chart.js/auto'
 import { Line } from "react-chartjs-2"
+import { Chart as ChartJS, registerables } from 'chart.js';
+import zoomPlugin from 'chartjs-plugin-zoom';
 import "../css/WaitTimeGraph.css"
 import {useState} from "react";
 
+ChartJS.register(...registerables, zoomPlugin);
+
 function WaitTimeGraphComp({waitTimeData})  {
 
-
-    const YaxisMax = Math.max(...waitTimeData.RideInformation.WaitTimeData.map(i => i.waitTime));
-    const YaxisCeiling = YaxisMax + 20;
     let lastEntry = waitTimeData.RideInformation.WaitTimeData.length - 1;
     let latestDate = waitTimeData.RideInformation.WaitTimeData[lastEntry].updated;
     let endingDate = new Date(latestDate);
@@ -21,7 +21,6 @@ function WaitTimeGraphComp({waitTimeData})  {
     console.log(`wait time graph comp -- date: ${latestDate}`);
     console.log(`formated end date: ${formatedEndDate}`);
     console.log(`formated start date: ${formatedStartDate}`);
-    console.log(`y max: ${YaxisCeiling}`);
 
     const [startDate,setStartDate] = useState(formatedStartDate);
     const [endDate,setEndDate] = useState(formatedEndDate);
@@ -48,13 +47,27 @@ function WaitTimeGraphComp({waitTimeData})  {
         return dataDate >= startDate && dataDate <= endDate;
     });
 
+    const pointColor = filteredData.map(data => data.isOpen === true ? 'rgba(66,253,115,0.5)' : 'rgba(243, 0, 5, 0.5)');
+
+    const capitalize = (string) => `${string.charAt(0).toUpperCase() + string.slice(1)}`;
+
     return (
         <>
-        <div className="Graph" style={{ height: '300px', width: '100%' }}>
+        <div className="Graph" >
 
             {!waitTimeData?.RideInformation?.WaitTimeData ? (
                 <div style={{ height: '300px' }}>Loading chart data...</div>
-            ):(
+            ):(<>
+
+                <div className="chart-legend">
+                    <div className="legend-item">
+                        <span className="dot openDot"></span> Open
+                    </div>
+                    <div className="legend-item">
+                        <span className="dot closedDot"></span> Closed
+                    </div>
+                </div>
+
                 <Line
                     data={{
 
@@ -67,36 +80,73 @@ function WaitTimeGraphComp({waitTimeData})  {
                                 label: "Wait Time (min)",
                                 // data: waitTimeData.RideInformation.WaitTimeData.map((data) => data.waitTime),
                                 data: filteredData.map((data) => data.waitTime),
-                                borderColor: 'rgb(75, 192, 192)',
+                                pointBackgroundColor: pointColor,
+                                pointBorderColor: pointColor,
+                                borderColor: 'rgb(101,101,101)',
                                 tension: 0.1
                             },
                         ],
                     }}
                     options={{
                         maintainAspectRatio: false,
+                        layout:{
+                            padding: {
+                                bottom: 20,
+                            },
+                        },
                         scales: {
                             y: {
+                                border: {
+                                    color: 'rgb(101, 101, 101)',
+                                },
+                                grid: {
+                                    color: 'rgba(101, 101, 101,0.5)',
+                                },
                                 beginAtZero: true, // Ensures the chart doesn't "float"
                                 suggestedMax: Math.max(...filteredData.map(i => i.waitTime)) + 20,
                                 ticks: {
                                     stepSize: 5,
                                 }
                             },
+                            x: {
+                                border: {
+                                    color: 'rgb(101, 101, 101)',
+                                },
+                                grid: {
+                                    color: 'rgba(101, 101, 101, 0.25)',
+                                }
+                            }
                         },
                         plugins: {
                             title:{
                                 display: true,
-                                text: `${waitTimeData.RideInformation.name}`,
+                                text: `${capitalize(waitTimeData.RideInformation.name)}`,
                                 font: {
                                     size: 18,
                                     family: 'Verdana', // You can match your Card font
                                     weight: 'bold'
+                                },
+                            },
+                            zoom:{
+                                pan: {
+                                    enabled: true,
+                                    mode: 'x', // Allow panning left and right
+                                },
+                                zoom: {
+                                    wheel: {
+                                        enabled: true, // Use mouse wheel to zoom
+                                    },
+                                    pinch: {
+                                        enabled: true, // Allow touch-screen zooming
+                                    },
+                                    mode: 'x', // Usually better to only zoom the time axis
                                 },
                             }
                         }
 
                     }}
                 />
+                </>
             )}
         </div>
 

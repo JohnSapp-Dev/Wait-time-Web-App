@@ -6,7 +6,7 @@
 
 .Graph {
     width: 100%;
-    max-height: 300px;
+    height: 500px;
     margin: 0 auto;
 }
 
@@ -44,3 +44,29 @@
 .filterDate div {
     color: var(--text-color);
 }
+
+.chart-legend {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    padding-left: 5px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.openDot { background-color: #308d49; }
+.dot.closedDot { background-color: #871013; }
