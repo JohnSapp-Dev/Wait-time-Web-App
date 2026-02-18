@@ -1,0 +1,12 @@
+img{
+    max-width: 150px;
+    max-height: 150px;
+    aspect-ratio: 1 / 1;
+    border: 1px solid white;
+    border-radius: 50%;
+}
+
+.UserInfoCard {
+
+    border: 1px solid white;
+}

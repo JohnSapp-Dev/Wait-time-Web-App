@@ -1,10 +1,11 @@
-
+import UserInfoCard from '../Components/UserInfoCard'
 
 function LoginPage({}) {
 
 
     return (
-        <div>Login</div>
+        <UserInfoCard key={'infoPage'}/>
+
     )
 }
 

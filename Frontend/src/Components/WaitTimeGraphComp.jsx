@@ -17,10 +17,9 @@ function WaitTimeGraphComp({waitTimeData})  {
     let formatedEndDate = endingDate.toISOString().split("T")[0];
     let formatedStartDate = startingDate.toISOString().split("T")[0];
 
-
-    console.log(`wait time graph comp -- date: ${latestDate}`);
-    console.log(`formated end date: ${formatedEndDate}`);
-    console.log(`formated start date: ${formatedStartDate}`);
+    // console.log(`wait time graph comp -- date: ${latestDate}`);
+    // console.log(`formated end date: ${formatedEndDate}`);
+    // console.log(`formated start date: ${formatedStartDate}`);
 
     const [startDate,setStartDate] = useState(formatedStartDate);
     const [endDate,setEndDate] = useState(formatedEndDate);
