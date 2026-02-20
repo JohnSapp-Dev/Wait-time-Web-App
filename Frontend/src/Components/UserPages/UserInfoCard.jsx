@@ -1,4 +1,4 @@
-import "../css/UserInfoCard.css"
+import "../../css/UserInfoCard.css"
 
 
 function UserInfoCard(){
@@ -7,7 +7,7 @@ function UserInfoCard(){
     return (
 
         <div className="UserInfoCard">
-            <img src='../../public/ProfilePicture.png' alt='UserInfoCardImage'/>
+            <img className="profilePic" src='../../../public/ProfilePicture.png' alt='UserInfoCardImage'/>
             <p>User Name</p>
             <p>Favorite Park</p>
         </div>

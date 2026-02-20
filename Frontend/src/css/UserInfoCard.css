@@ -1,12 +1,20 @@
-img{
+.profilePic{
+    display: block;
+   transform: translate(0%,-50%);
+
     max-width: 150px;
     max-height: 150px;
     aspect-ratio: 1 / 1;
     border: 1px solid white;
     border-radius: 50%;
+    margin: auto;
+    background-color: #303030;
 }
 
 .UserInfoCard {
-
+    width: 200px;
+    max-width: 300px;
     border: 1px solid white;
+    border-radius: 30px;
+    justify-items: center;
 }

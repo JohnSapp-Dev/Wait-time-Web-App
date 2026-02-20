@@ -1,10 +1,16 @@
-import UserInfoCard from '../Components/UserInfoCard'
+import UserInfoCard from '../Components/UserPages/UserInfoCard.jsx'
+import UserNotificationRulesContainer from "../Components/UserPages/UserNotificationRulesContainer.jsx";
+import "../css/loginpage.css"
 
 function LoginPage({}) {
 
 
     return (
-        <UserInfoCard key={'infoPage'}/>
+        <div className="MainContainer">
+            <UserInfoCard key={'infoPage'}/>
+            <UserNotificationRulesContainer key={'notificationRules'}/>
+        </div>
+
 
     )
 }

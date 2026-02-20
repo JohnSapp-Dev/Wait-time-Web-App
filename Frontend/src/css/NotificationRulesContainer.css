@@ -1,0 +1,22 @@
+.NotificationRulesContainer {
+    border: #fff solid 1px;
+    border-radius: 30px;
+    flex-grow:1;
+
+    & button{
+        border: none;
+        border-radius: 20px;
+        background-color: #24771b;
+        color: white;
+        height: 30px;
+        padding: 0 25px 0 25px;
+        margin: auto 20px;
+
+        &:hover{
+            background-color: #66a85e;
+        }
+        &:active{
+            transform: translate(0,2px);
+        }
+    }
+}

@@ -1,0 +1,45 @@
+.NotificationRules {
+    margin: 1em;
+    display: flex;
+    border: #fff 1px solid;
+    border-radius: 20px;
+    min-height: 50px;
+    padding: .1em;
+    flex-wrap: wrap;
+
+
+    & p{
+        flex-grow: 1;
+        /*border: crimson 1px solid;*/
+        /*border-radius: 50px;*/
+        margin: auto;
+    }
+
+    & button{
+        border: none;
+        border-radius: 20px;
+
+        color: white;
+        height: 30px;
+        padding: 0 25px 0 25px;
+        margin: auto 10px;
+
+        &.update{
+            background-color: #0e9fc1;
+            &:hover{
+                background-color: #5d8a97;
+            }
+        }
+
+        &.cancel{
+            background-color: #e64732;
+            &:hover{
+                background-color: #c85e4e;
+            }
+        }
+
+        &:active{
+            transform: translate(0,2px);
+        }
+    }
+}

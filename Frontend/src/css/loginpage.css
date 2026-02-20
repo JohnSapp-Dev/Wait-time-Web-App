@@ -1,0 +1,6 @@
+.MainContainer {
+    display: flex;
+    /*border: #737373 solid 1px;*/
+    gap: 1rem;
+    margin-top: 75px;
+}
