@@ -105,7 +105,6 @@ const updateCurrentUserProfile = asyncHandler(async (req, res) => {
             email: updateUser.email,
             isAdmin: updateUser.isAdmin
         });
-
     }
 });
 
@@ -207,6 +206,48 @@ const createNewNotification = asyncHandler(async (req, res) => {
     }
 })
 
+const updateNotificationById = asyncHandler(async (req, res) => {
+    try{
+        const user = await User.findById(req.user._id);
+        console.log(`user: ${user}`)
+
+        const findNotification = await user.NotificationRules.id(req.body.id);
+        console.log(`Notification: ${findNotification}`);
+
+        if (user){
+            if(findNotification){
+                findNotification.AttractionName = req.body.AttractionName || findNotification.AttractionName;
+                findNotification.Rule = req.body.Rule|| findNotification.Rule;
+                findNotification.ExpirationData = req.body.ExpirationData || findNotification.ExpirationData;
+
+                const updateNotification = await user.save()
+                console.log("Saved new note");
+
+                res.json({
+                    AttractionName: findNotification.AttractionName,
+                    Rule: findNotification.Rule,
+                    ExpirationData: findNotification.ExpirationData,
+                    _id: findNotification._id
+                });
+                console.log(`New Notification: ${updateNotification}`);
+            }else{
+                res.status(404).json({
+                    message: `Notification not found`,
+                })
+            }
+
+        }else{
+            res.status(404).json({
+                message: `User not found`,
+            })
+        }
+    }catch(error){
+        res.status(500);
+        throw new Error(error);
+    }
+
+})
+
 export {
     createUser,
     loginUser,
@@ -217,6 +258,7 @@ export {
     deleteUserById,
     getUserById,
     updateUserById,
-    createNewNotification
+    createNewNotification,
+    updateNotificationById
 };
 

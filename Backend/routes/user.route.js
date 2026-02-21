@@ -9,7 +9,8 @@ import {
     deleteUserById,
     getUserById,
     updateUserById,
-    createNewNotification
+    createNewNotification,
+    updateNotificationById
 } from "../controllers/user.controller.js";
 import { authenticate, authorizeAdmin } from "../middleWares/authMiddleware.js"
 
@@ -33,6 +34,7 @@ router.route('/:id')
     .put(authenticate, authorizeAdmin, updateUserById);
 
 router.route('/notification/:id')
-    .post(authenticate, createNewNotification);
+    .post(authenticate, createNewNotification)
+    .put(authenticate, updateNotificationById);
 
 export default router;
