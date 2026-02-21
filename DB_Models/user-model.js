@@ -19,7 +19,24 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         required: true,
         default: false,
-    }
+    },
+    NotificationRules:[
+        {
+            AttractionName:{
+                type: String,
+                required: true,
+            },
+            Rule:{
+                type: String,
+                required: true,
+                unique: true,
+            },
+            ExpirationData:{
+                type: Date,
+                required: true,
+            }
+        }
+    ]
 
 },{timestamps: true});
 

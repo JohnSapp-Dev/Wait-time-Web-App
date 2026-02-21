@@ -49,7 +49,7 @@ const loginUser = asyncHandler(async (req, res) => {
                 email: existingUser.email,
                 isAdmin: existingUser.isAdmin
             });
-            return;
+
         }
     }
 });
@@ -165,6 +165,46 @@ const updateUserById = asyncHandler(async (req, res) => {
             message: `User not found`,
         })
     }
+});
+
+const createNewNotification = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+
+    if(user){
+
+        try{
+            const newNotification = {
+                AttractionName: req.body.AttractionName,
+                Rule: req.body.Rule,
+                ExpirationData: req.body.ExpirationData,
+            }
+            await User.findOneAndUpdate(
+                {_id: req.params.id},
+                {
+                    $addToSet:{
+                        NotificationRules: newNotification
+                    },
+                },{
+                    upsert: true,
+                    new: true,
+                    runValidators: true
+                }
+            )
+
+            res.status(201).json({
+                message: "New Notification created",
+            })
+        }catch(error){
+            res.status(500);
+            // throw new Error("Server Error, did not add notification");
+            throw new Error(error);
+        }
+
+    }else{
+        res.status(404).json({
+            message: `User not found`,
+        })
+    }
 })
 
 export {
@@ -176,6 +216,7 @@ export {
     updateCurrentUserProfile,
     deleteUserById,
     getUserById,
-    updateUserById
+    updateUserById,
+    createNewNotification
 };
 
