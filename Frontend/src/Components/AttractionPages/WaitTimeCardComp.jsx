@@ -1,4 +1,4 @@
-import "../css/WaitTimeCard.css"
+import "../../css/WaitTimeCard.css"
 
 function WaitTimeCardComp({Attraction}) {
 

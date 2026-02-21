@@ -1,4 +1,4 @@
-import "../css/AttractionInfoCard.css"
+import "../../css/AttractionInfoCard.css"
 
 function AttractionInfoPageComp({Attraction}) {
 

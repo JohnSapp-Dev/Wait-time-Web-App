@@ -27,14 +27,14 @@
         &.update{
             background-color: #0e9fc1;
             &:hover{
-                background-color: #5d8a97;
+                background-color: #78afbf;
             }
         }
 
         &.cancel{
             background-color: #e64732;
             &:hover{
-                background-color: #c85e4e;
+                background-color: #ef705c;
             }
         }
 

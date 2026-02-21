@@ -1,4 +1,4 @@
-import "../css/AttractionCards.css"
+import "../../css/AttractionCards.css"
 import {Link} from "react-router";
 
 function AttractionCardsComp({Attraction}) {

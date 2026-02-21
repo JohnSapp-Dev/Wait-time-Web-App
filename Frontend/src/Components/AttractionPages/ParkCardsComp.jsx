@@ -1,4 +1,4 @@
-import "../css/ParkCard.css"
+import "../../css/ParkCard.css"
 import {Link} from "react-router";
 
 function ParkCardsComp({park}) {

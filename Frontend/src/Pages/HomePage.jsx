@@ -1,5 +1,5 @@
 import "../css/CardGrid.css"
-import ParkCardsComp from '../Components/ParkCardsComp.jsx'
+import ParkCardsComp from '../Components/AttractionPages/ParkCardsComp.jsx'
 
 function HomePage() {
 

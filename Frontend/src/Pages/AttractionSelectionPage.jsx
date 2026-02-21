@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import AttractionCardsComp from "../Components/AttractionCardsComp.jsx";
+import AttractionCardsComp from "../Components/AttractionPages/AttractionCardsComp.jsx";
 import {useEffect, useState} from "react";
 import { getDataByPark } from "../Services/getParkData.js";
 import "../css/CardGrid.css"

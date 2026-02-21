@@ -1,7 +1,7 @@
 import { Line } from "react-chartjs-2"
 import { Chart as ChartJS, registerables } from 'chart.js';
 import zoomPlugin from 'chartjs-plugin-zoom';
-import "../css/WaitTimeGraph.css"
+import "../../css/WaitTimeGraph.css"
 import {useState} from "react";
 
 ChartJS.register(...registerables, zoomPlugin);

@@ -14,6 +14,7 @@ body {
     background-color: var(--backgroundcolor);
     padding: 1rem 2rem;
     display: flex;
+    flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid var(--SearchFontColor);
@@ -44,12 +45,23 @@ body {
     outline: 1px solid var(--ActiveFontColor);
 }
 
+.NavLinks{
+    display: flex;
+    flex-wrap: nowrap;
+
+}
+
 .Link {
     display: inline-flex;
     color: var(--TextFontColor);
     margin: 0 0.5rem 0 0.5rem;
     padding: 0.5rem .5rem;
     text-decoration: none;
+
+}
+
+.NavForm{
+    height: 30px;
 }
 
 .SearchBar {
@@ -57,6 +69,7 @@ body {
     outline: none;
     border: none;
     background: transparent;
+
     color: var(--SearchFontColor);
 }
 

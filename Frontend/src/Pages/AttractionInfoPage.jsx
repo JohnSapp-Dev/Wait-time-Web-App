@@ -1,6 +1,6 @@
-import WaitTimeGraphComp from '../Components/WaitTimeGraphComp.jsx';
-import WaitTimeCardComp from "../Components/WaitTimeCardComp.jsx";
-import AttractionInfoPageComp from "../Components/AttractionInfoPageComp.jsx";
+import WaitTimeGraphComp from '../Components/AttractionPages/WaitTimeGraphComp.jsx';
+import WaitTimeCardComp from "../Components/AttractionPages/WaitTimeCardComp.jsx";
+import AttractionInfoPageComp from "../Components/AttractionPages/AttractionInfoPageComp.jsx";
 import {Line} from "react-chartjs-2";
 import {useEffect, useState} from "react";
 import {useParams} from "react-router";
