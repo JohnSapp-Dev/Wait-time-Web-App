@@ -209,10 +209,8 @@ const createNewNotification = asyncHandler(async (req, res) => {
 const updateNotificationById = asyncHandler(async (req, res) => {
     try{
         const user = await User.findById(req.user._id);
-        console.log(`user: ${user}`)
 
         const findNotification = await user.NotificationRules.id(req.body.id);
-        console.log(`Notification: ${findNotification}`);
 
         if (user){
             if(findNotification){
@@ -221,7 +219,6 @@ const updateNotificationById = asyncHandler(async (req, res) => {
                 findNotification.ExpirationData = req.body.ExpirationData || findNotification.ExpirationData;
 
                 const updateNotification = await user.save()
-                console.log("Saved new note");
 
                 res.json({
                     AttractionName: findNotification.AttractionName,
