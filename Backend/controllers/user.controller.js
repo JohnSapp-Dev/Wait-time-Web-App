@@ -3,6 +3,7 @@ import asyncHandler from "../middleWares/asyncHandler.js";
 import bcrypt from "bcryptjs"
 import createToken from "../utils/createToken.js";
 
+
 const createUser = asyncHandler(async (req, res) => {
     const { username, email, password } = req.body;
 
@@ -273,6 +274,23 @@ try{
 
 })
 
+const getAllUserNotifications = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+
+    if(user){
+        try{
+            res.status(200).json(
+                user.NotificationRules
+            )
+        }catch(error){
+            res.status(500);
+            throw new Error(error);
+        }
+
+    }
+
+})
+
 export {
     createUser,
     loginUser,
@@ -285,6 +303,7 @@ export {
     updateUserById,
     createNewNotification,
     updateNotificationById,
-    deleteNotification
+    deleteNotification,
+    getAllUserNotifications
 };
 
