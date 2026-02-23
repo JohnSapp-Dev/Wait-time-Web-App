@@ -245,6 +245,34 @@ const updateNotificationById = asyncHandler(async (req, res) => {
 
 })
 
+const deleteNotification = asyncHandler(async (req, res) => {
+    const userId = req.params.id;
+    const notificationId = req.body.id;
+
+try{
+    const user = await User.findByIdAndUpdate(
+        userId,
+        {
+            $pull: {NotificationRules: {_id: notificationId}},
+        },
+        {new: true}
+    );
+    if(!user){
+        return res.status(404).json({message: `User not found`});
+    }
+
+    res.status(200).json({
+        message: "Notification deleted",
+        userId: userId._id,
+        Username: userId.username,
+    })
+}catch(error){
+    res.status(500);
+    throw new Error(error);
+}
+
+})
+
 export {
     createUser,
     loginUser,
@@ -256,6 +284,7 @@ export {
     getUserById,
     updateUserById,
     createNewNotification,
-    updateNotificationById
+    updateNotificationById,
+    deleteNotification
 };
 
